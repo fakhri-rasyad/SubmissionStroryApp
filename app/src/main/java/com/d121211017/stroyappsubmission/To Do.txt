@@ -6,3 +6,5 @@ Menampilkan list story dari API.
 Menampilkan halaman detail story ketika salah satu list dipilih.
 Membuat halaman tambah story yang terintegrasi dengan Camera & Gallery.
 Meng-upload story baru ke API.
+
+Image by <a href="https://www.freepik.com/free-vector/hand-drawn-essay-illustration_40478852.htm#from_view=detail_serie">Freepik</a>
