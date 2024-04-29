@@ -1,0 +1,8 @@
+Membuat tampilan register dan login.
+Membuat custom view untuk validasi password.
+Menghubungkan proses register dan login dengan API.
+Menyimpan session ke DataStore setelah login.
+Menampilkan list story dari API.
+Menampilkan halaman detail story ketika salah satu list dipilih.
+Membuat halaman tambah story yang terintegrasi dengan Camera & Gallery.
+Meng-upload story baru ke API.
