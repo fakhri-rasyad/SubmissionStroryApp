@@ -1,5 +1,5 @@
-Membuat tampilan register dan login.
-Membuat custom view untuk validasi password.
+Membuat tampilan register dan login. [CLEAR]
+Membuat custom view untuk validasi password. [CLEAR]
 Menghubungkan proses register dan login dengan API.
 Menyimpan session ke DataStore setelah login.
 Menampilkan list story dari API.
@@ -7,4 +7,32 @@ Menampilkan halaman detail story ketika salah satu list dipilih.
 Membuat halaman tambah story yang terintegrasi dengan Camera & Gallery.
 Meng-upload story baru ke API.
 
-Image by <a href="https://www.freepik.com/free-vector/hand-drawn-essay-illustration_40478852.htm#from_view=detail_serie">Freepik</a>
+Menuliskan kode dengan bersih.
+    Bersihkan comment dan kode yang tidak digunakan.
+    Indentasi yang sesuai.
+    Menghapus import yang tidak digunakan.
+    [CLEAR]
+
+Membuat Custom View berupa EditText dengan ketentuan sebagai berikut.
+    Jika format email salah, menampilkan error langsung pada EditText.
+    [CLEAR]
+
+Menambahkan opsi mengambil gambar dari kamera pada saat menambah cerita.
+
+Pada proses register, login, dan upload, aplikasi langsung pindah begitu saja. Pastikan hanya berpindah ketika sudah mendapatkan respons berhasil atau gagal.
+
+Mengimplemantasikan alur aplikasi yang tepat:
+Setelah login, ketika ditekan back pada halaman home, tidak kembali ke halaman login tetapi keluar.
+Setelah upload, ketika ditekan back pada halaman home, tidak kembali ke halaman upload tetapi keluar.
+Setelah logout, ketika ditekan back, tidak kembali ke dalam aplikasi tetapi keluar.
+
+Membuat stack widget untuk menampilkan daftar cerita.
+
+Terdapat pengaturan untuk localization (multi bahasa).
+
+Menambahkan informasi selama proses interaksi dengan API:
+Loading ketika memuat data
+Informasi error ketika gagal
+Pesan informasi ketika tidak ada data
+
+Menerapkan Android Architecture Component (minimal ViewModel dan LiveData) dengan benar di semua halaman yang mengandung business logic.

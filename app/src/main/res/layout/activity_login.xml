@@ -27,10 +27,11 @@
         app:layout_constraintTop_toBottomOf="@id/login_image"
         app:layout_constraintBottom_toTopOf="@id/password_input"
         >
-        <com.google.android.material.textfield.TextInputEditText
+        <com.d121211017.stroyappsubmission.ui.custom.CustomEditTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/input_email"
+            android:inputType="textEmailAddress"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -41,10 +42,11 @@
         app:layout_constraintTop_toBottomOf="@id/email_input"
         app:layout_constraintBottom_toTopOf="@id/login_button"
         >
-        <com.google.android.material.textfield.TextInputEditText
+        <com.d121211017.stroyappsubmission.ui.custom.CustomEditTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/input_password"
+            android:inputType="textPassword"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
