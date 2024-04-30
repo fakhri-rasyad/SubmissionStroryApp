@@ -2,9 +2,11 @@
     <string name="app_name">StroyAppSubmission</string>
     <string name="login_image">login_image</string>
     <string name="login">Login</string>
-    <string name="login_input_email">Masukkan email</string>
-    <string name="login_input_password">Masukkan password</string>
+    <string name="input_email">Masukkan email</string>
+    <string name="input_password">Masukkan password</string>
+    <string name="input_name">Masukkan nama</string>
     <string name="register">Register</string>
     <string name="welcome_image">welcome_image</string>
     <string name="welcome_text">Selamat datang di aplikasi submission!</string>
+    <string name="register_image">register image</string>
 </resources>

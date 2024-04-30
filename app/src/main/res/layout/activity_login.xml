@@ -30,7 +30,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/login_input_email"
+            android:hint="@string/input_email"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -44,7 +44,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/login_input_password"
+            android:hint="@string/input_password"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
