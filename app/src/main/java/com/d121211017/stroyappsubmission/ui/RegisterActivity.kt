@@ -1,16 +1,13 @@
 package com.d121211017.stroyappsubmission.ui
 
+import android.content.Intent
 import android.os.Bundle
-import android.os.Message
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
-import com.d121211017.stroyappsubmission.R
 import com.d121211017.stroyappsubmission.databinding.ActivityRegisterBinding
 import com.d121211017.stroyappsubmission.viewmodel.RegisterViewModel
 import com.d121211017.stroyappsubmission.viewmodel.ViewModelFactory
@@ -47,7 +44,7 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         viewModel.registrationSuccess.observe(this){
-            showToast(it)
+            handleRegisterResponse(it)
         }
 
         binding.apply {
@@ -79,12 +76,15 @@ class RegisterActivity : AppCompatActivity() {
         return ViewModelProvider(appCompatActivity, factory)[RegisterViewModel::class.java]
     }
 
-    private fun showToast(response: Pair<Boolean, String>){
+    private fun handleRegisterResponse(response: Pair<Boolean, String>){
         Log.d(TAG, "${response.first}, ${response.second}")
         if(!response.first){
             Toast.makeText(this, response.second, Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            this.finish()
         } else {
-            Toast.makeText(this, response.second, Toast.LENGTH_SHORT).show()
+            binding.emailInput.error = response.second
         }
     }
 }
