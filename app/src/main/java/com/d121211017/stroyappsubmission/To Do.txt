@@ -1,6 +1,6 @@
 Membuat tampilan register dan login. [CLEAR]
 Membuat custom view untuk validasi password. [CLEAR]
-Menghubungkan proses register dan login dengan API.
+Menghubungkan proses register dan login dengan API. [CLEAR]
 Menyimpan session ke DataStore setelah login.
 Menampilkan list story dari API.
 Menampilkan halaman detail story ketika salah satu list dipilih.
@@ -36,3 +36,32 @@ Informasi error ketika gagal
 Pesan informasi ketika tidak ada data
 
 Menerapkan Android Architecture Component (minimal ViewModel dan LiveData) dengan benar di semua halaman yang mengandung business logic.
+
+
+Password error
+{
+    "error": true,
+    "message": "Invalid password"
+}
+
+Email Error
+{
+    "error": true,
+    "message": "User not found"
+}
+
+success
+{
+    "error": false,
+    "message": "success",
+    "loginResult": {
+        "userId": "user-MY1znckyyxzZSeGz",
+        "name": "sample_name",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ1c2VyLU1ZMXpuY2t5eXh6WlNlR3oiLCJpYXQiOjE3MTQ1NjUxNDl9.Gib-QE0BglqSHtxeRJ6JErEC0I2_bW22176njmT1Lvw"
+    }
+}
+
+sample email
+name = sample_name
+email = sample@myemail.com
+password = sample_password

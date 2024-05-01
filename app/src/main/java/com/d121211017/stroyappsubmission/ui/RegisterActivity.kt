@@ -44,7 +44,13 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         viewModel.registrationSuccess.observe(this){
-            handleRegisterResponse(it)
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            this.finish()
+        }
+
+        viewModel.handleResponseError.observe(this){
+            handleErrorResponse(it)
         }
 
         binding.apply {
@@ -76,13 +82,9 @@ class RegisterActivity : AppCompatActivity() {
         return ViewModelProvider(appCompatActivity, factory)[RegisterViewModel::class.java]
     }
 
-    private fun handleRegisterResponse(response: Pair<Boolean, String>){
-        Log.d(TAG, "${response.first}, ${response.second}")
+    private fun handleErrorResponse(response: Pair<Boolean, String>){
         if(!response.first){
             Toast.makeText(this, response.second, Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            this.finish()
         } else {
             binding.emailInput.error = response.second
         }

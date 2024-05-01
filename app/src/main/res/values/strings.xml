@@ -12,4 +12,5 @@
     <string name="email_invalid">Email tidak valid</string>
     <string name="password_invalid">Password tidak boleh kurang dari 8 karakter</string>
     <string name="email_taken_error">Email has been taken</string>
+    <string name="unknown_error">Unknown error received</string>
 </resources>

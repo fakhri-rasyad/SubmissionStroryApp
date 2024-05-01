@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModel
 import com.d121211017.stroyappsubmission.R
 import com.d121211017.stroyappsubmission.data.remote.entity.SimpleResponse
 import com.d121211017.stroyappsubmission.data.remote.retrofit.ApiConfig
+import com.d121211017.stroyappsubmission.getErrorResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,8 +27,11 @@ class RegisterViewModel(application: Application): ViewModel() {
     private val _isLoadingRegistration = MutableLiveData<Boolean>()
     val loadingRegistration : LiveData<Boolean> = _isLoadingRegistration
 
-    private val _isRegistrationSuccess = MutableLiveData<Pair<Boolean, String>>()
-    val registrationSuccess : LiveData<Pair<Boolean, String>> = _isRegistrationSuccess
+    private val _isRegistrationSuccess = MutableLiveData<Boolean>()
+    val registrationSuccess : LiveData<Boolean> = _isRegistrationSuccess
+
+    private val _handleResponseError = MutableLiveData<Pair<Boolean, String>>()
+    val handleResponseError : LiveData<Pair<Boolean, String>> = _handleResponseError
 
     private val _isEmailValid = MutableLiveData<Boolean>()
 
@@ -55,17 +59,15 @@ class RegisterViewModel(application: Application): ViewModel() {
 
                 val responseBody = p1.body()
                 if(p1.isSuccessful && responseBody != null){
-                    _isRegistrationSuccess.postValue(Pair(responseBody.error, responseBody.message.toString()))
+                    _isRegistrationSuccess.postValue(true)
                     Log.d(TAG, responseBody.message.toString())
                 } else if(!p1.isSuccessful) {
-                    _isRegistrationSuccess.postValue(Pair(true,
-                        applicationContext.getString(R.string.email_taken_error)))
+                    val errorResponse = getErrorResponse(p1.errorBody()!!.string())
+                    _handleResponseError.postValue(Pair(errorResponse.error, errorResponse.message!!))
                 }
             }
-
             override fun onFailure(p0: Call<SimpleResponse>, p1: Throwable) {
-                _isRegistrationSuccess.postValue(Pair(true, p1.message.toString()))
-                Log.e(TAG, p1.message.toString())
+                _handleResponseError.postValue(Pair(false, applicationContext.getString(R.string.unknown_error)))
             }
 
         })
