@@ -1,12 +1,14 @@
 package com.d121211017.stroyappsubmission.viewmodel
 
 import android.app.Application
+import android.content.Context
 import android.util.Log
 import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.d121211017.stroyappsubmission.R
 import com.d121211017.stroyappsubmission.data.remote.entity.SimpleResponse
 import com.d121211017.stroyappsubmission.data.remote.retrofit.ApiConfig
 import retrofit2.Call
@@ -19,17 +21,17 @@ class RegisterViewModel(application: Application): ViewModel() {
         private const val TAG = "Register View Model"
     }
 
+    private val applicationContext : Context = application.applicationContext
+
     private val _isLoadingRegistration = MutableLiveData<Boolean>()
     val loadingRegistration : LiveData<Boolean> = _isLoadingRegistration
 
-    private val _isRegistrationSuccess = MutableLiveData<Boolean>()
-    val registrationSuccess : LiveData<Boolean> = _isRegistrationSuccess
+    private val _isRegistrationSuccess = MutableLiveData<Pair<Boolean, String>>()
+    val registrationSuccess : LiveData<Pair<Boolean, String>> = _isRegistrationSuccess
 
     private val _isEmailValid = MutableLiveData<Boolean>()
-    val isEmailValid : LiveData<Boolean> = _isEmailValid
 
     private val _isPasswordValid = MutableLiveData<Boolean>()
-    val isPasswordValid : LiveData<Boolean> = _isPasswordValid
 
     private val _isButtonEnabled = MediatorLiveData<Boolean>().apply {
         addSource(_isEmailValid) { value = it && (_isPasswordValid.value ?: false) }
@@ -53,13 +55,16 @@ class RegisterViewModel(application: Application): ViewModel() {
 
                 val responseBody = p1.body()
                 if(p1.isSuccessful && responseBody != null){
-                    _isRegistrationSuccess.postValue(true)
+                    _isRegistrationSuccess.postValue(Pair(responseBody.error, responseBody.message.toString()))
                     Log.d(TAG, responseBody.message.toString())
+                } else if(!p1.isSuccessful) {
+                    _isRegistrationSuccess.postValue(Pair(true,
+                        applicationContext.getString(R.string.email_taken_error)))
                 }
             }
 
             override fun onFailure(p0: Call<SimpleResponse>, p1: Throwable) {
-                _isRegistrationSuccess.postValue(false)
+                _isRegistrationSuccess.postValue(Pair(true, p1.message.toString()))
                 Log.e(TAG, p1.message.toString())
             }
 

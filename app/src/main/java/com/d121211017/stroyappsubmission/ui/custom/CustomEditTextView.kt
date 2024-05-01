@@ -3,9 +3,8 @@ package com.d121211017.stroyappsubmission.ui.custom
 import android.content.Context
 import android.text.InputType
 import android.util.AttributeSet
-import android.util.Log
 import android.util.Patterns
-import androidx.appcompat.widget.AppCompatEditText
+import com.d121211017.stroyappsubmission.R
 import com.google.android.material.textfield.TextInputEditText
 
 class CustomEditTextView : TextInputEditText {
@@ -22,9 +21,9 @@ class CustomEditTextView : TextInputEditText {
         super.onTextChanged(text, start, lengthBefore, lengthAfter)
         if(!text.isNullOrEmpty()){
             if(inputType == InputType.TYPE_TEXT_VARIATION_PASSWORD + 1 && text.length < 8) {
-                error = "Password tidak boleh kurang dari 8 karakter"
+                error = context.getString(R.string.password_invalid)
             } else if (inputType == InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS + 1 && !Patterns.EMAIL_ADDRESS.matcher(text).matches()){
-                error = "Email tidak valid"
+                error = context.getString(R.string.email_invalid)
             }
         }
     }
