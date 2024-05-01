@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
@@ -39,6 +41,21 @@ class RegisterActivity : AppCompatActivity() {
             binding.passwordInput.error = if(!it) getString(R.string.password_invalid) else null
         }
 
+        viewModel.loadingRegistration.observe(this){
+            binding.apply {
+                if(it){
+                    binding.registerButton.visibility = View.INVISIBLE
+                    binding.pgBar.visibility = View.VISIBLE
+                } else {
+                    binding.registerButton.visibility = View.VISIBLE
+                    binding.pgBar.visibility = View.INVISIBLE
+                }
+            }
+        }
+
+        viewModel.registrationSuccess.observe(this){
+            showToast(it)
+        }
 
         binding.apply {
             nameInput.addTextChangedListener(
@@ -67,5 +84,13 @@ class RegisterActivity : AppCompatActivity() {
     private fun getViewModel(appCompatActivity: AppCompatActivity) : RegisterViewModel {
         val factory = ViewModelFactory.getInstance(appCompatActivity.application)
         return ViewModelProvider(appCompatActivity, factory)[RegisterViewModel::class.java]
+    }
+
+    private fun showToast(success : Boolean){
+        if(success){
+            Toast.makeText(this, "Registration Success", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, "Registration Failed", Toast.LENGTH_SHORT).show()
+        }
     }
 }

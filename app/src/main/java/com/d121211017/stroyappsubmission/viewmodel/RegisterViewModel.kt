@@ -22,6 +22,9 @@ class RegisterViewModel(application: Application): ViewModel() {
     private val _isLoadingRegistration = MutableLiveData<Boolean>()
     val loadingRegistration : LiveData<Boolean> = _isLoadingRegistration
 
+    private val _isRegistrationSuccess = MutableLiveData<Boolean>()
+    val registrationSuccess : LiveData<Boolean> = _isRegistrationSuccess
+
     private val _isEmailValid = MutableLiveData<Boolean>()
     val isEmailValid : LiveData<Boolean> = _isEmailValid
 
@@ -50,20 +53,18 @@ class RegisterViewModel(application: Application): ViewModel() {
 
                 val responseBody = p1.body()
                 if(p1.isSuccessful && responseBody != null){
+                    _isRegistrationSuccess.postValue(true)
                     Log.d(TAG, responseBody.message.toString())
                 }
             }
 
             override fun onFailure(p0: Call<SimpleResponse>, p1: Throwable) {
+                _isRegistrationSuccess.postValue(false)
                 Log.e(TAG, p1.message.toString())
             }
 
         })
 
-    }
-
-    fun getData(){
-        Log.d(TAG, "$name, $email, $password")
     }
 
     fun nameValidation(name: String){
@@ -73,7 +74,6 @@ class RegisterViewModel(application: Application): ViewModel() {
         _isEmailValid.postValue(Patterns.EMAIL_ADDRESS.matcher(email).matches())
         this.email = email
     }
-
     fun passwordValidation(password : String){
         if (password.isNotEmpty() && password.length >= 8) _isPasswordValid.postValue(true)
         else _isPasswordValid.postValue(false)
