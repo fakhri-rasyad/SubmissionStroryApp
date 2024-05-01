@@ -39,9 +39,6 @@ class RegisterViewModel(application: Application): ViewModel() {
     private var password = ""
 
     fun postRegistration(
-        name : String,
-        email : String,
-        password : String
     ){
         _isLoadingRegistration.postValue(true)
 

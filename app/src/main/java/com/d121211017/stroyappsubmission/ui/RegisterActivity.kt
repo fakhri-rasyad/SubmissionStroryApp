@@ -59,7 +59,7 @@ class RegisterActivity : AppCompatActivity() {
             )
 
             registerButton.setOnClickListener {
-                viewModel.getData()
+                viewModel.postRegistration()
             }
         }
     }
