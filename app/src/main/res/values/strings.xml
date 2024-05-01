@@ -9,4 +9,6 @@
     <string name="welcome_image">welcome_image</string>
     <string name="welcome_text">Selamat datang di aplikasi submission!</string>
     <string name="register_image">register image</string>
+    <string name="email_invalid">Email tidak valid</string>
+    <string name="password_invalid">Password tidak boleh kurang dari 8 karakter</string>
 </resources>
